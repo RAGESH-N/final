@@ -1,0 +1,77 @@
+
+    .home-page-wrapper {
+        background-image: url('/assets/food_delivery_image.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-blend-mode: overlay;
+        background-color: rgba(0, 0, 0, 0.4);
+        min-height: 100vh;
+    }
+    /* Header with black overlay */
+    
+    .header-section {
+        min-height: 15vh;
+        background-color: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(2px);
+        color: white;
+    }
+    
+    .main-section {
+        min-height: 80vh;
+        color: white;
+    }
+    /* Main text box */
+    
+    .content-box {
+        max-width: 800px;
+        background-color: rgba(0, 0, 0, 0.5);
+        padding: 2rem;
+        border-radius: 0.5rem;
+    }
+    /* Review section container */
+    
+    .review-wrapper {
+        background-color: rgba(0, 0, 0, 0.6);
+        border-radius: 12px;
+        max-width: 1000px;
+        margin: 0 auto;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    }
+    /* Individual review card inside the wrapper */
+    
+    .review-card {
+        border-left: 4px solid #007bff;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .review-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+    }
+    /* Stars style */
+    
+    .stars {
+        color: #facc15;
+        font-size: 1.2rem;
+    }
+    /* Footer background color */
+    
+    .footer {
+        background-color: #3f2a1d;
+        /* Dark brown matching food tone */
+    }
+    /* Responsive adjustments */
+    
+    @media (max-width: 768px) {
+        .content-box {
+            padding: 1rem;
+            margin-top: 50px;
+        }
+        .stars {
+            font-size: 1rem;
+        }
+        .review-card {
+            font-size: 0.95rem;
+        }
+    }

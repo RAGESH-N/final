@@ -1,0 +1,81 @@
+<div class="container">
+  <!-- Geolocation Section -->
+  <button (click)="getLocation()" class="btn mb-2">📍 Get My Location</button>
+  <div class="box user-location mt-2 mb-3">
+    <h5>🟦 Your Location</h5>
+    <p><strong>Coordinates:</strong> {{latitude}}, {{longitude}}</p>
+    <p><strong>City:</strong> {{city}}</p>
+    <p><strong>Area:</strong> {{area}}</p>
+    <p><strong>Street:</strong> {{street}}</p>
+    <p><strong>Pincode:</strong> {{pincode}}</p>
+  </div>
+  <div id="map"></div>
+</div>
+
+<div class="container mt-4">
+  <h2 class="text-center mb-4">Your Cart</h2>
+  <div *ngIf="cartItems.length === 0" class="text-center">
+    <p>Your cart is empty.</p>
+  </div>
+  <div *ngIf="cartItems.length > 0">
+    <table class="table mb-3">
+      <thead>
+        <tr>
+          <th>Dish</th>
+          <th>Restaurant</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th>Item Total</th>
+          <th>Distance</th>
+          <th>Remove</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of cartItems">
+          <td>{{ item.dishName }}</td>
+          <td>{{ item.restaurantName }}</td>
+          <td>₹{{ item.price }}</td>
+          <td>
+            <input type="number" min="1" [(ngModel)]="item.quantity" (change)="updateQuantity(item, item.quantity)" style="width: 60px;">
+          </td>
+          <td>₹{{ item.price * (item.quantity || 1) }}</td>
+          <td>
+            <ng-container *ngIf="getRestaurantDistance(item) !== null">
+              {{ getRestaurantDistance(item)?.toFixed(2) }} km
+            </ng-container>
+            <ng-container *ngIf="getRestaurantDistance(item) === null">
+              N/A
+            </ng-container>
+          </td>
+          <td>
+            <button class="btn btn-sm btn-danger" (click)="removeItem(item)">
+              Remove
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="mb-3 text-end"><strong>Total: ₹{{ totalPrice }}</strong></div>
+    <div class="d-flex justify-content-between">
+      <button class="btn btn-danger" (click)="clearCart()">Clear Cart</button>
+      <button class="btn btn-success" (click)="proceedToPayment()">Proceed to Payment</button>
+    </div>
+  </div>
+</div>
+
+<!-- Manual Distance Calculator -->
+<div class="container mt-5 mb-4">
+  <h4>Calculate Distance to Any Restaurant</h4>
+  <div class="mb-3">
+    <label for="rest-coord" class="form-label">Restaurant Coordinates (lat,lon):</label>
+    <input id="rest-coord" class="form-control" [(ngModel)]="restaurantGeoLocation" placeholder="18.5496358,73.9421769" />
+  </div>
+  <button class="btn btn-primary mb-3" (click)="getManualKm()">Get KM</button>
+  <div *ngIf="manualDistance !== null" class="alert alert-success">
+    Distance: {{ manualDistance.toFixed(2) }} km
+  </div>
+  <div *ngIf="manualError" class="alert alert-danger">{{ manualError }}</div>
+  <div *ngIf="manualUserLat && manualUserLon && manualDistance !== null">
+    <small>Your location: {{ manualUserLat }}, {{ manualUserLon }}</small>
+  </div>
+</div>

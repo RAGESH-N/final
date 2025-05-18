@@ -1,0 +1,69 @@
+<div class="container mt-5">
+  <h2 class="text-center mb-4">All Restaurants</h2>
+
+  <!-- Search bar -->
+  <div class="mb-3">
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Search by restaurant name"
+      [(ngModel)]="searchTerm"
+      (input)="searchRestaurants()"
+    />
+  </div>
+
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Restaurant Name</th>
+        <th>Owner Name</th>
+        <th>Address</th>
+        <th>FSSAI Code</th>
+        <th>Aadhar Number</th>
+        <th>Phone Number</th>
+        <th>Bank Account Number</th>
+        <th>Mail ID</th>
+        <th>City</th>
+        <th>Geolacation</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let restaurant of filteredRestaurants">
+        <!-- Use ngIf to switch between view/edit mode -->
+        <ng-container *ngIf="editedRestaurantId !== restaurant._id; else editRow">
+          <td>{{ restaurant.restaurantName }}</td>
+          <td>{{ restaurant.shopOwnerName }}</td>
+          <td>{{ restaurant.shopAddress }}</td>
+          <td>{{ restaurant.fssaiCode }}</td>
+          <td>{{ restaurant.aadharNumber }}</td>
+          <td>{{ restaurant.phoneNumber }}</td>
+          <td>{{ restaurant.bankAccountNumber }}</td>
+          <td>{{ restaurant.mailId }}</td>
+          <td>{{ restaurant.city }}</td>
+          <td>{{ restaurant.geoLocation }}</td>
+          <td>
+            <button class="btn btn-primary btn-sm me-2" (click)="startEdit(restaurant)">Edit</button>
+            <button class="btn btn-danger btn-sm" (click)="deleteRestaurant(restaurant._id)">Delete</button>
+          </td>
+        </ng-container>
+        <ng-template #editRow>
+          <td><input [(ngModel)]="editCache.restaurantName" class="form-control" /></td>
+          <td><input [(ngModel)]="editCache.shopOwnerName" class="form-control" /></td>
+          <td><input [(ngModel)]="editCache.shopAddress" class="form-control" /></td>
+          <td><input [(ngModel)]="editCache.fssaiCode" class="form-control" /></td>
+          <td><input [(ngModel)]="editCache.aadharNumber" class="form-control" /></td>
+          <td><input [(ngModel)]="editCache.phoneNumber" class="form-control" /></td>
+          <td><input [(ngModel)]="editCache.bankAccountNumber" class="form-control" /></td>
+          <td><input [(ngModel)]="editCache.mailId" class="form-control" /></td>
+          <td><input [(ngModel)]="editCache.city" class="form-control" /></td>
+          <td><input [(ngModel)]="editCache.geoLocation" class="form-control"/></td>
+          <td>
+            <button class="btn btn-success btn-sm me-2" (click)="saveEdit(restaurant._id)">Save</button>
+            <button class="btn btn-secondary btn-sm" (click)="cancelEdit()">Cancel</button>
+          </td>
+        </ng-template>
+      </tr>
+    </tbody>
+  </table>
+</div>

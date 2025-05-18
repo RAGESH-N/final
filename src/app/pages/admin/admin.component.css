@@ -1,0 +1,105 @@
+.admin-login-container {
+    width: 100%;
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    text-align: center;
+  }
+  
+  .admin-login-container h2 {
+    margin-bottom: 20px;
+  }
+  
+  .admin-login-container label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  /* Full-page background with image */
+
+.admin-background {
+    position: relative;
+    min-height: 100vh;
+    background: url('/assets/Admin-bg-ref-img1.jpg') no-repeat center center fixed;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* Dark overlay */
+
+.admin-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    /* black with 40% transparency */
+    z-index: 1;
+}
+
+
+/* Card (Login Box) Styling */
+
+.card {
+    position: relative;
+    z-index: 2;
+    border: none;
+    border-radius: 10px;
+    background-color: #ffffff;
+    /* pure white */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+
+/* Text Styling */
+
+h3 {
+    font-weight: bold;
+    color: #d9534f;
+}
+
+.form-label {
+    font-weight: 600;
+}
+
+input.form-control:focus {
+    box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
+    border-color: #dc3545;
+}
+
+button {
+    font-weight: 600;
+    transition: 0.3s ease;
+}
+
+button:hover {
+    background-color: #c82333;
+}
+  .admin-login-container input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .admin-login-container button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .admin-login-container button:hover {
+    background-color: #0056b3;
+  }

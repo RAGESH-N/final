@@ -1,0 +1,203 @@
+<div class="container mt-5">
+  <h2 class="text-center mb-4">Add a New Restaurant</h2>
+  <form (ngSubmit)="addRestaurant()" #restaurantForm="ngForm">
+    <!-- Restaurant Name -->
+    <div class="mb-3">
+      <label for="restaurantName" class="form-label">Restaurant Name</label>
+      <input
+        type="text"
+        id="restaurantName"
+        class="form-control"
+        [(ngModel)]="restaurant.restaurantName"
+        name="restaurantName"
+        required
+        #restaurantName="ngModel"
+      />
+      <div *ngIf="restaurantName.invalid && restaurantName.touched" class="text-danger">
+        Restaurant Name is required.
+      </div>
+    </div>
+
+    <!-- Shop Owner Name -->
+    <div class="mb-3">
+      <label for="shopOwnerName" class="form-label">Shop Owner Name</label>
+      <input
+        type="text"
+        id="shopOwnerName"
+        class="form-control"
+        [(ngModel)]="restaurant.shopOwnerName"
+        name="shopOwnerName"
+        required
+        #shopOwnerName="ngModel"
+      />
+      <div *ngIf="shopOwnerName.invalid && shopOwnerName.touched" class="text-danger">
+        Shop Owner Name is required.
+      </div>
+    </div>
+
+    <!-- Shop Address -->
+    <div class="mb-3">
+      <label for="shopAddress" class="form-label">Shop Address</label>
+      <textarea
+        id="shopAddress"
+        class="form-control"
+        [(ngModel)]="restaurant.shopAddress"
+        name="shopAddress"
+        required
+        #shopAddress="ngModel"
+      ></textarea>
+      <div *ngIf="shopAddress.invalid && shopAddress.touched" class="text-danger">
+        Shop Address is required.
+      </div>
+    </div>
+
+    <!-- FSSAI Code -->
+    <div class="mb-3">
+      <label for="fssaiCode" class="form-label">FSSAI Code</label>
+      <input
+        type="text"
+        id="fssaiCode"
+        class="form-control"
+        [(ngModel)]="restaurant.fssaiCode"
+        name="fssaiCode"
+        required
+        pattern="^[0-9]{12}$"
+        #fssaiCode="ngModel"
+      />
+      <div *ngIf="fssaiCode.invalid && fssaiCode.touched" class="text-danger">
+        FSSAI Code must be 12 digits.
+      </div>
+    </div>
+
+    <!-- Aadhar Number -->
+    <div class="mb-3">
+      <label for="aadharNumber" class="form-label">Aadhar Number</label>
+      <input
+        type="text"
+        id="aadharNumber"
+        class="form-control"
+        [(ngModel)]="restaurant.aadharNumber"
+        name="aadharNumber"
+        required
+        pattern="^[0-9]{16}$"
+        #aadharNumber="ngModel"
+      />
+      <div *ngIf="aadharNumber.invalid && aadharNumber.touched" class="text-danger">
+        Aadhar Number must be 16 digits.
+      </div>
+    </div>
+
+    <!-- Phone Number -->
+    <div class="mb-3">
+      <label for="phoneNumber" class="form-label">Phone Number</label>
+      <input
+        type="text"
+        id="phoneNumber"
+        class="form-control"
+        [(ngModel)]="restaurant.phoneNumber"
+        name="phoneNumber"
+        required
+        pattern="^[0-9]{10}$"
+        #phoneNumber="ngModel"
+      />
+      <div *ngIf="phoneNumber.invalid && phoneNumber.touched" class="text-danger">
+        Phone Number must be 10 digits.
+      </div>
+    </div>
+<!-- City -->
+<div class="mb-3">
+  <label for="city" class="form-label">City</label>
+  <input
+    type="text"
+    id="city"
+    class="form-control"
+    [(ngModel)]="restaurant.city"
+    name="city"
+    required
+    #city="ngModel"
+  />
+  <div *ngIf="city.invalid && city.touched" class="text-danger">
+    City is required.
+  </div>
+</div>
+
+<!-- Geo Location -->
+<div class="mb-3">
+  <label for="geoLocation" class="form-label">Geo Location</label>
+  <input
+    type="text"
+    id="geoLocation"
+    class="form-control"
+    [(ngModel)]="restaurant.geoLocation"
+    name="geoLocation"
+    required
+    #geoLocation="ngModel"
+    placeholder="e.g., 12.9716,77.5946"
+  />
+  <div *ngIf="geoLocation.invalid && geoLocation.touched" class="text-danger">
+    Geo Location is required (format: latitude,longitude).
+  </div>
+</div>
+    <!-- Bank Account Number -->
+    <div class="mb-3">
+      <label for="bankAccountNumber" class="form-label">Bank Account Number</label>
+      <input
+        type="text"
+        id="bankAccountNumber"
+        class="form-control"
+        [(ngModel)]="restaurant.bankAccountNumber"
+        name="bankAccountNumber"
+        required
+        pattern="^[0-9]{12}$"
+        #bankAccountNumber="ngModel"
+      />
+      <div *ngIf="bankAccountNumber.invalid && bankAccountNumber.touched" class="text-danger">
+        Bank Account Number must be 12 digits.
+      </div>
+    </div>
+
+    <!-- Password -->
+    <div class="mb-3">
+      <label for="password" class="form-label">Password</label>
+      <input
+        type="password"
+        id="password"
+        class="form-control"
+        [(ngModel)]="restaurant.password"
+        name="password"
+        required
+        pattern="^[0-9]{8}$"
+        #password="ngModel"
+      />
+      <div *ngIf="password.invalid && password.touched" class="text-danger">
+        Password must be 8 digits.
+      </div>
+    </div>
+
+    <!-- Mail ID -->
+    <div class="mb-3">
+      <label for="mailId" class="form-label">Mail ID</label>
+      <input
+        type="email"
+        id="mailId"
+        class="form-control"
+        [(ngModel)]="restaurant.mailId"
+        name="mailId"
+        required
+        #mailId="ngModel"
+      />
+      <div *ngIf="mailId.invalid && mailId.touched" class="text-danger">
+        Mail ID must be a valid email address.
+      </div>
+    </div>
+
+    <!-- Submit Button -->
+    <button
+      type="submit"
+      class="btn btn-primary w-100"
+      [disabled]="restaurantForm.invalid"
+    >
+      Add Shop
+    </button>
+  </form>
+</div>

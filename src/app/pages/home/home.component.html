@@ -1,0 +1,99 @@
+<div class="navbar">
+  <!-- Logo -->
+  <div class="navbar-logo">
+    <h1>Food Delivery</h1>
+  </div>
+
+  <!-- Navigation Links -->
+  <div class="navbar-links">
+    <a routerLink="/order-history">Order History</a>
+    <a routerLink="/view-cart">View Cart</a>
+    <a routerLink="/famous-restaurants">Famous Restaurants</a>
+  </div>
+
+  <!-- User Profile Section -->
+  <div class="navbar-user">
+    <img [src]="profilePhoto || 'uploads/default-profile.png'" alt="User Profile" class="profile-pic" />
+    <span class="username" (click)="goToProfile()">{{ userId }}</span>
+    <button class="signout-button" (click)="onSignout()">Signout</button>
+  </div>
+</div>
+
+<div class="container mt-4">
+  <h2 class="text-center mb-4">All Dishes</h2>
+
+  <!-- Combined Search (Restaurant or Dish Name) -->
+  <div class="mb-3">
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Search by Restaurant or Dish Name"
+      [(ngModel)]="searchQuery"
+    />
+  </div>
+
+  <!-- Veg/Non-Veg Filter -->
+  <div class="mb-3 text-center">
+    <label class="me-2">
+      <input type="radio" name="type" [(ngModel)]="selectedType" value=""> All
+    </label>
+    <label class="me-2">
+      <input type="radio" name="type" [(ngModel)]="selectedType" value="veg"> Veg
+    </label>
+    <label>
+      <input type="radio" name="type" [(ngModel)]="selectedType" value="non-veg"> Non-Veg
+    </label>
+  </div>
+
+  <!-- Price Sorter -->
+  <div class="mb-3 text-center">
+    <label for="priceSort" class="me-2"><strong>Sort by Price:</strong></label>
+    <select id="priceSort" [(ngModel)]="priceSort" class="form-select d-inline-block w-auto" style="display:inline-block; width:auto;">
+      <option value="">Default</option>
+      <option value="asc">Low to High</option>
+      <option value="desc">High to Low</option>
+    </select>
+  </div>
+
+  <div class="row">
+    <div class="col-md-4 mb-4" *ngFor="let dish of filteredDishes">
+      <div class="card h-100">
+        <!-- Dish Image -->
+        <img
+          [src]="'http://localhost:3000' + dish.image"
+          class="card-img-top"
+          alt="{{ dish.dishName }}"
+          style="height: 200px; object-fit: cover;"
+        />
+        <div class="card-body">
+          <div class="d-flex align-items-center mb-2">
+            <!-- Veg/Non-Veg Indicator -->
+            <span
+              *ngIf="dish.type && dish.type.toLowerCase() === 'veg'; else nonVeg"
+              title="Vegetarian"
+              style="display:inline-block;width:16px;height:16px;border:2px solid green;border-radius:3px;margin-right:8px;">
+              <span style="display:block;width:10px;height:10px;background:green;border-radius:2px;margin:2px auto;"></span>
+            </span>
+            <ng-template #nonVeg>
+              <span
+                *ngIf="dish.type && dish.type.toLowerCase() === 'non-veg'"
+                title="Non Vegetarian"
+                style="display:inline-block;width:16px;height:16px;border:2px solid red;border-radius:3px;margin-right:8px;">
+                <span style="display:block;width:10px;height:10px;background:red;border-radius:2px;margin:2px auto;"></span>
+              </span>
+            </ng-template>
+            <h5 class="card-title mb-0">{{ dish.dishName }}</h5>
+          </div>
+          <p class="mb-1"><strong>Cuisine:</strong> {{ dish.cuisine }}</p>
+          <p class="mb-1">{{ dish.description }}</p>
+          <p class="mb-1"><strong>Price:</strong> ₹{{ dish.price }}</p>
+          <p class="mb-1" *ngIf="dish.restaurantName"><strong>Restaurant:</strong> {{ dish.restaurantName }}</p>
+          <!-- Add to Cart Button -->
+          <button class="btn btn-primary w-100 mt-2" (click)="addToCart(dish)">
+            Add to Cart
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,47 @@
+/* Full-page background with image */
+
+.login-background {
+    position: relative;
+    min-height: 100vh;
+    background: url('/assets/FoodieDelivery-Ref-img2.jpg') no-repeat center center fixed;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* Optional blackish overlay */
+
+.login-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    /* black with 50% opacity */
+    z-index: 1;
+}
+
+
+/* Login card wrapper */
+
+.card {
+    position: relative;
+    z-index: 2;
+    background-color: rgba(255, 255, 255, 0.95);
+    /* slightly transparent white */
+    border-radius: 10px;
+}
+
+
+/* Captcha code style */
+
+.captcha-code {
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: #dc3545;
+    letter-spacing: 2px;
+    user-select: none;
+}

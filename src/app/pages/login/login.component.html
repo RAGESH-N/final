@@ -1,0 +1,50 @@
+<div class="login-background">
+    <div class="login-overlay"></div>
+
+    <div class="container d-flex justify-content-center align-items-center vh-100">
+        <div class="card shadow-lg p-4" style="max-width: 420px; width: 100%;">
+            <h3 class="text-center mb-4 text-danger">Login</h3>
+            <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+                <!-- User ID / Phone -->
+                <div class="mb-3">
+                    <label for="identifier" class="form-label">User ID / Phone</label>
+                    <input id="identifier" class="form-control" formControlName="identifier" placeholder="Enter ID or Phone" />
+                    <div *ngIf="loginForm.get('identifier')?.touched && loginForm.get('identifier')?.invalid" class="text-danger">
+                        Required field
+                    </div>
+                </div>
+                <!-- Password -->
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input id="password" type="password" class="form-control" formControlName="password" placeholder="Enter password" />
+                    <div *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.invalid" class="text-danger">
+                        Required field
+                    </div>
+                </div>
+
+                <!-- Captcha -->
+                <div class="mb-3">
+                    <label class="form-label">Captcha</label>
+                    <div class="d-flex align-items-center mb-2">
+                        <span class="captcha-display me-2 px-2 py-1 rounded bg-light border">{{ generatedCode }}</span>
+                        <button type="button" class="btn btn-outline-secondary btn-sm" (click)="refreshCaptcha()">↻</button>
+                    </div>
+                    <input type="text" class="form-control" formControlName="captcha" placeholder="Enter Captcha" />
+                    <div *ngIf="captchaError" class="text-danger mt-1">{{ captchaError }}</div>
+                </div>
+
+                <!-- Login Button -->
+                <button type="submit" class="btn btn-danger w-100">Login</button>
+            </form>
+
+            <div class="text-end mt-2">
+                <a routerLink="/forgot-password" class="small text-decoration-none text-secondary">Forgot Password?</a>
+            </div>
+            <div class="text-center mt-3">
+                <p class="mb-0">Don't have an account?
+                    <a routerLink="/signup" class="text-decoration-none text-primary fw-bold">Create Account</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

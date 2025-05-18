@@ -1,0 +1,14 @@
+<div class="profile-container">
+    <h2>User Profile</h2>
+    <div *ngIf="errorMessage" class="error">
+      {{ errorMessage }}
+    </div>
+    <div *ngIf="!errorMessage">
+      <img [src]="userData.profilePhoto || 'assets/default-profile.png'" alt="Profile Photo" class="profile-pic-large" />
+      <p><strong>Username:</strong> {{ userData.username }}</p>
+      <p><strong>User ID:</strong> {{ userData.userid }}</p>
+      <p><strong>Phone:</strong> {{ userData.phone }}</p>
+      <p><strong>Email:</strong> {{ userData.email }}</p>
+      <p><strong>Address:</strong> {{ userData.address }}</p>
+    </div>
+  </div>

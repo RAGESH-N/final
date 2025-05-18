@@ -1,0 +1,44 @@
+<div class="container mt-5">
+  <h2 class="text-center mb-4">Manage Restaurants</h2>
+
+  <!-- View Restaurant Button Outside of Table -->
+  <div class="text-end mb-3">
+    <button class="btn btn-primary" (click)="navigateToViewRestaurant()">View Restaurant</button>
+  </div>
+
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Restaurant Name</th>
+        <th>Owner Name</th>
+        <th>Address</th>
+        <th>FSSAI Code</th>
+        <th>Aadhar Number</th>
+        <th>Phone Number</th>
+        <th>Bank Account Number</th>
+        <th>Mail ID</th>
+        <th>City</th>
+        <th>Geolacation</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let restaurant of pendingRestaurants">
+        <td>{{ restaurant.restaurantName }}</td>
+        <td>{{ restaurant.shopOwnerName }}</td>
+        <td>{{ restaurant.shopAddress }}</td>
+        <td>{{ restaurant.fssaiCode }}</td>
+        <td>{{ restaurant.aadharNumber }}</td>
+        <td>{{ restaurant.phoneNumber }}</td>
+        <td>{{ restaurant.bankAccountNumber }}</td>
+        <td>{{ restaurant.mailId }}</td>
+        <td>{{ restaurant.city }}</td>
+        <td>{{ restaurant.geoLocation }}</td>
+        <td>
+          <button class="btn btn-success btn-sm me-2" (click)="approveRestaurant(restaurant._id)">Approve</button>
+          <button class="btn btn-danger btn-sm me-2" (click)="rejectRestaurant(restaurant._id)">Reject</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

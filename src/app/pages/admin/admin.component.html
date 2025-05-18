@@ -1,0 +1,29 @@
+<div class="admin-background">
+    <div class="admin-overlay"></div>
+
+    <div class="container d-flex justify-content-center align-items-center vh-100">
+        <div class="card shadow-lg p-4" style="max-width: 420px; width: 100%;">
+            <h3 class="text-center mb-4 text-danger">Admin Login</h3>
+            <form [formGroup]="adminLoginForm" (ngSubmit)="onAdminLogin()">
+                <!-- Admin ID -->
+                <div class="mb-3">
+                    <label for="adminid" class="form-label">Admin ID</label>
+                    <input type="text" id="adminid" class="form-control" formControlName="adminid" placeholder="Enter Admin ID" />
+                    <div *ngIf="adminLoginForm.get('adminid')?.touched && adminLoginForm.get('adminid')?.invalid" class="text-danger">
+                        Admin ID is required.
+                    </div>
+                </div>
+                <!-- Password -->
+                <div class="mb-3">
+                    <label for="pass" class="form-label">Password</label>
+                    <input type="password" id="pass" class="form-control" formControlName="pass" placeholder="Enter Password" />
+                    <div *ngIf="adminLoginForm.get('pass')?.touched && adminLoginForm.get('pass')?.invalid" class="text-danger">
+                        Password is required.
+                    </div>
+                </div>
+                <!-- Login Button -->
+                <button type="submit" class="btn btn-danger w-100">Login as Admin</button>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,82 @@
+<div class="table-container">
+  <div class="table-header">
+    <div class="table-title">User Management</div>
+    <!-- Sign Out Button -->
+    <button class="signout-btn" (click)="signOut()">Sign Out</button>
+  </div>
+
+  <!-- Add User and Manage Restaurants Buttons -->
+  <div class="button-group" *ngIf="!isAddingUser">
+    <button class="add-btn" (click)="startAddUser()">Add User</button>
+    <button class="manage-btn" (click)="navigateToManageRestaurants()">Manage Restaurants</button>
+  </div>
+
+  <!-- Add User Form (Shown only when isAddingUser is true) -->
+  <div *ngIf="isAddingUser" class="add-user-form">
+    <h3>Add New User</h3>
+    <form (ngSubmit)="addUser()">
+      <input [(ngModel)]="newUser.username" name="username" placeholder="Username" required />
+      <input [(ngModel)]="newUser.userid" name="userid" placeholder="User ID" required />
+      <input [(ngModel)]="newUser.phone" name="phone" placeholder="Phone" required />
+      <input [(ngModel)]="newUser.email" name="email" placeholder="Email" required />
+      <input [(ngModel)]="newUser.address" name="address" placeholder="Address" required />
+      <input [(ngModel)]="newUser.password" name="password" placeholder="Password" required />
+      <div class="button-group">
+        <button type="submit" class="save-btn">Add User</button>
+        <button type="button" class="cancel-btn" (click)="cancelAddUser()">Cancel</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Existing User Table -->
+  <table>
+    <thead>
+      <tr>
+        <th>User ID</th>
+        <th>Username</th>
+        <th>Phone</th>
+        <th>Email</th>
+        <th>Address</th>
+        <th>Password</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users">
+        <td>{{ user.userid }}</td>
+        <td *ngIf="editingUser?._id !== user._id">{{ user.username }}</td>
+        <td *ngIf="editingUser?._id === user._id">
+          <input [(ngModel)]="editingUser.username" name="editUsername" placeholder="Username" />
+        </td>
+
+        <td *ngIf="editingUser?._id !== user._id">{{ user.phone }}</td>
+        <td *ngIf="editingUser?._id === user._id">
+          <input [(ngModel)]="editingUser.phone" name="editPhone" placeholder="Phone" />
+        </td>
+
+        <td *ngIf="editingUser?._id !== user._id">{{ user.email }}</td>
+        <td *ngIf="editingUser?._id === user._id">
+          <input [(ngModel)]="editingUser.email" name="editEmail" placeholder="Email" />
+        </td>
+
+        <td *ngIf="editingUser?._id !== user._id">{{ user.address }}</td>
+        <td *ngIf="editingUser?._id === user._id">
+          <input [(ngModel)]="editingUser.address" name="editAddress" placeholder="Address" />
+        </td>
+
+        <td *ngIf="editingUser?._id !== user._id">{{ user.password }}</td>
+        <td *ngIf="editingUser?._id === user._id">
+          <input [(ngModel)]="editingUser.password" name="editPassword" placeholder="Password" />
+        </td>
+
+        <!-- Action buttons -->
+        <td>
+          <button *ngIf="editingUser?._id !== user._id" (click)="editUser(user)" class="edit">Edit</button>
+          <button *ngIf="editingUser?._id === user._id" (click)="saveUser()" class="save">Save</button>
+          <button *ngIf="editingUser?._id === user._id" (click)="cancelEdit()" class="cancel">Cancel</button>
+          <button (click)="deleteUser(user._id)" class="delete">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
